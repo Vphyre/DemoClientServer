@@ -1,0 +1,4 @@
+É necessario ter a maquina virtual do java devidamente instalada em seu PC para a execução correta dos apps.
+
+1- Abra o Servidor.bat;
+2- Abra o cliente.bat e insira o token "1564398";

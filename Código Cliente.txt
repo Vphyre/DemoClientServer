@@ -1,0 +1,71 @@
+package com.client;
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Client
+{
+
+	public static void main(String[] args)
+	{
+
+     try 
+      {
+    	 Scanner teclado =  new Scanner(System.in); 
+    	 
+    	 String msgs="";
+    	 String msg; /*1564398*/
+    	 
+    	
+    	 
+    	 System.out.println("Digite o Token que será enviado(1564398): ");
+    	 msg = teclado.next();
+    	
+    	 
+    	 
+		Socket socket = new Socket("localhost", 5555);
+		
+		ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+		ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
+		
+		
+		System.out.println("Enviando mensagem...");
+		
+		output.writeUTF(msg);
+		output.flush();
+		
+		System.out.println("Mensagem "+ msgs+ "enviada");
+		
+		msgs = input.readUTF();
+		System.out.println("Resposta: "+ msgs);
+		
+		System.out.println("Digite uma tecla para sair: ");
+		teclado.next();
+		
+		input.close();
+		output.close();
+		socket.close();
+		teclado.close();
+	
+		
+		
+		
+	  } 
+     catch (IOException ex)
+        {
+    	 
+		Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+		
+	    } 
+
+	}
+	
+	
+
+}
